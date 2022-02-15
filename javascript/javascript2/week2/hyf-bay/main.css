@@ -1,0 +1,67 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;700&family=Open+Sans:wght@300&display=swap');
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    font-family: "Open Sans", sans-serif;
+}
+
+body {
+    width: 100%;
+    background-color: #F9FBFD;
+    height: 100vh;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+body, h1, h2 {
+    margin: 0;
+}
+
+.container{
+    width: 400px;
+    height: 520px;
+    background: #fff;
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 4px 4px 30px rgba(0, 0, 0, 0.06);
+    overflow-y: scroll;
+}
+
+.container::-webkit-scrollbar{
+    display: none;
+}
+
+.container form{
+    width: 100%;
+    border: 1px solid rgb(134, 131, 190);
+    border-radius: 5px;
+    
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.container form input{
+    border: none;
+    outline: none;
+    box-shadow: none;
+    width: 100%;
+    font-size: 16px;
+    font-weight: 600;
+    padding: 8px 10px;
+}
+
+.container form i{
+    padding-left: 10px;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
