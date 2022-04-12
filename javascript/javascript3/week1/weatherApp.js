@@ -29,48 +29,6 @@ form.addEventListener("submit", (e) => {
   e.preventDefault();
 });
 
-const monthArray = [
-  "January",
-  "February",
-  "March",
-  "April",
-  "May",
-  "June",
-  "July",
-  "August",
-  "September",
-  "October",
-  "November",
-  "December",
-];
-
-  const weekday = [
-    "Sunday",
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday",
-  ];
- 
-  setInterval(() => {
-    const date = new Date();
-    const month = date.getMonth();
-    const newDate = date.getDate();
-    const day = date.getDay();
-    const hour = date.getHours();
-    const minutes = date.getMinutes();
-    const finalMinutes = minutes <= 10 ? "0" + minutes : minutes;
-    const year = date.getFullYear();
-    const ampm = hour >= 12 ? "PM" : "AM";
-    time.innerHTML =
-      hour + ":" + finalMinutes + ` <span id="am-pm">${ampm}</span>`;
-   
-  }, 1000);
-
-
-
 function fetchWeatherData() {
   fetch(
     `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=d09e6b8bf67128a701c0f9da9000852d`
@@ -81,19 +39,39 @@ function fetchWeatherData() {
 
       temp.innerHTML =
         Math.round(parseFloat(data.main.temp) - 273.15) + "&#176;";
+
       condition.innerHTML = data.weather[0].main;
       nameOutput.innerHTML = data.name;
-      const dt = data.dt
-       dateOutPut.innerHTML = new Date(dt*1000).toDateString()
+
+      //date
+      const dt = data.dt;
+      dateOutPut.innerHTML = new Date(dt * 1000).toDateString();
       
+      //time
+      const timezone = data.timezone;
+      const timezoneInMinutes = timezone / 60;
+      time.innerHTML = moment().utcOffset(timezoneInMinutes).format("h:mm A");
+
       cloud.innerHTML = data.clouds.all + "%";
-      humidity.innerHTML =data.main.humidity + "%"
-      wind.innerHTML = data.wind.speed + "km/h"
-      sunRise.innerHTML = new Date(
-        data.sys.sunrise * 1000
-      ).toLocaleTimeString();
+      humidity.innerHTML = data.main.humidity + "%";
+      wind.innerHTML = data.wind.speed + "km/h";
+      sunRise.innerHTML = moment
+        .utc(data.sys.sunrise, "X")
+        .add(timezone, "seconds")
+        .format("HH:mm a");
+
+      sunSet.innerHTML = moment
+        .utc(data.sys.sunset, "X")
+        .add(timezone, "seconds")
+        .format("HH:mm a");
+      icon.src = `http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
+
+      //map
       
-      sunSet.innerHTML = new Date(data.sys.set * 1000).toLocaleTimeString();
-      icon.src =`http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`
+// function initMap(){
+//   map = new google.maps.Map(document.getElementById('map'), {
+//     center: { lat: -34.397, lng: 150.644 },
+//     zoom: 8,
+//   });
     });
 }
