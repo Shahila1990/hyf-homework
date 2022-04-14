@@ -36,12 +36,13 @@
         </div>
         <div class="panel">
             <form action="" id="locationInput">
-                <input type="text" class="search" placeholder="Search Location"/>
-                <button type="submit" class="btn">
+                <input type="text" class="search" placeholder="Search Location" id="search"/>
+                <button type="submit" class="btn" id="btn">
 
                     <i class="fas fa-search"></i>
                 </button>
             </form>
+            <button id="locationbtn" class="fas fa">Get Location</button>
 
             <ul class="details">
                 <h4>Weather Details</h4>
@@ -67,10 +68,18 @@
                 </li>
             </ul>
             <div id="map"></div>
+            <div>
+                <h3>Previous Search</h4>
+                    <p id="prevSearch"></p>
+            </div>
         </div>
     </div>
     <script async src="./weatherApp.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script>
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAqXQltzFdTM-2TbS7HU6UjQwHuNqopcNM"
+      async
+    ></script>
 </body>
 
 </html>
