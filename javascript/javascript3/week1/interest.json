@@ -1,0 +1,10 @@
+{
+  "name": "Shahila",
+  "gender": "female",
+  "age": 32,
+  "interest": ["Coding", "Reading", "Learning new technology"],
+  "pet_love": {
+    "birds": true,
+    "animals": false
+  }
+}

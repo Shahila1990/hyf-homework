@@ -1,0 +1,49 @@
+h2 {
+    text-align: center;
+    color: rgb(127, 208, 226);
+}
+
+body {
+   background-color: rgb(230, 124, 189);
+  
+}
+
+.container {
+  margin-left: 30%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 500px;
+    height: 100%;
+}
+input {
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    padding-top: 20px;
+}
+button { 
+    background-color: #4c63af; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 10px;
+}
+
+.show-gif{
+    display: grid;
+    grid-template-columns: auto auto;
+    
+}
+.show-gif > img {
+  margin: 10px;
+  width: 350px;
+  height: 250px;
+  
+
+}
+
