@@ -44,13 +44,17 @@ function fetchWeatherData(url) {
 
       //date
       const dt = data.dt;
-      dateOutPut.innerHTML = new Date(dt * 1000).toDateString();
+      const date = new Date(dt * 1000).toDateString();
+      dateOutPut.innerHTML = date
 
       //time
       const timezone = data.timezone;
       const timezoneInMinutes = timezone / 60;
-      time.innerHTML = moment().utcOffset(timezoneInMinutes).format("h:mm A");
+      const times = moment().utcOffset(timezoneInMinutes).format("h:mm A");
+      time.innerHTML = times
 
+      const weatherType = data.weather[0].main
+      console.log(weatherType);
       cloud.innerHTML = data.clouds.all + "%";
       humidity.innerHTML = data.main.humidity + "%";
       wind.innerHTML = data.wind.speed + "km/h";
@@ -64,6 +68,37 @@ function fetchWeatherData(url) {
         .add(timezone, "seconds")
         .format("HH:mm a");
       icon.src = `http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
+
+      // change background according to weather and time
+      const hours = new Date(dt*1000).getHours()
+      console.log(hours);
+       if (hours >= 6 ) {
+         if (weatherType === "Clear") {
+           app.style.backgroundImage = `url(./images/night/clear.jpg)`;
+         } else if (weatherType === "Rain") {
+           app.style.backgroundImage = `url(./images/night/rainy.jpg)`;
+         }
+         else if (weatherType === "Snow") {
+           app.style.backgroundImage = `url(./images/night/snowy.jpg)`
+         }
+         else{
+           app.style.backgroundImage = `url(./images/night/cloudy.jpg)`
+         }
+       }
+       else{
+         if (weatherType === "Clear") {
+           app.style.backgroundImage = `url(./images/day/clear.jpg)`;
+         } else if (weatherType === "Rain") {
+           app.style.backgroundImage = `url(./images/day/rainy.jpg)`;
+         } else if (weatherType === "Snow") {
+           app.style.backgroundImage = `url(./images/day/snowy.jpg)`;
+         } else {
+           app.style.backgroundImage = `url(./images/day/cloudy.jpg)`;
+         }
+       }
+
+
+      
 
       //map
 
